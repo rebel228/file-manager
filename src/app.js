@@ -6,6 +6,7 @@ import cd from './navigation/cd.js';
 import ls from './navigation/ls.js';
 import cat from './files/cat.js';
 import add from './files/add.js';
+import rn from './files/rn.js';
 
 import { invalidInput } from './utils/consoleMessages.js';
 
@@ -60,6 +61,11 @@ stdin.on('data', async (chunk) => {
 
     case 'add': {
       add(directory, args);
+      return;
+    }
+
+    case 'rn': {
+      rn(directory, args);
       return;
     }
 
