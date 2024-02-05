@@ -7,14 +7,14 @@ import ls from './navigation/ls.js';
 import cat from './files/cat.js';
 import add from './files/add.js';
 import rn from './files/rn.js';
+import { homedir } from 'os';
 
 import { invalidInput } from './utils/consoleMessages.js';
 
 const { argv, stdin, stdout } = process;
-const { sep } = path;
 
 const username = argv[2].split('=')[1];
-let directory = path.resolve(sep);
+let directory = homedir();
 
 const setDirectory = async (value) => {
   try {
