@@ -4,16 +4,16 @@ import { access, constants } from 'fs/promises';
 import up from './navigation/up.js';
 import cd from './navigation/cd.js';
 import ls from './navigation/ls.js';
-import cat from './files/cat.js'
+import cat from './files/cat.js';
+import add from './files/add.js';
+
+import { invalidInput } from './utils/consoleMessages.js';
 
 const { argv, stdin, stdout } = process;
 const { sep } = path;
 
 const username = argv[2].split('=')[1];
 let directory = path.resolve(sep);
-
-
-const invalidInput = () => console.log('Invalid input');
 
 const setDirectory = async (value) => {
   try {
@@ -55,6 +55,11 @@ stdin.on('data', async (chunk) => {
 
     case 'cat': {
       cat(directory, args);
+      return;
+    }
+
+    case 'add': {
+      add(directory, args);
       return;
     }
 
