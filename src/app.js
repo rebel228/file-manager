@@ -4,6 +4,7 @@ import { access, constants } from 'fs/promises';
 import up from './navigation/up.js';
 import cd from './navigation/cd.js';
 import ls from './navigation/ls.js';
+import cat from './files/cat.js'
 
 const { argv, stdin, stdout } = process;
 const { sep } = path;
@@ -49,6 +50,11 @@ stdin.on('data', async (chunk) => {
 
     case 'ls': {
       await ls(directory);
+      return;
+    }
+
+    case 'cat': {
+      cat(directory, args);
       return;
     }
 
