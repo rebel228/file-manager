@@ -3,6 +3,7 @@ import process from 'process';
 import { access, constants } from 'fs/promises';
 import up from './navigation/up.js';
 import cd from './navigation/cd.js';
+import ls from './navigation/ls.js';
 
 const { argv, stdin, stdout } = process;
 const { sep } = path;
@@ -43,6 +44,11 @@ stdin.on('data', async (chunk) => {
       const newDir = cd(directory, args);
       directory = newDir;
       console.log(`You are currently in ${directory}`);
+      return;
+    }
+
+    case 'ls': {
+      await ls(directory);
       return;
     }
 
