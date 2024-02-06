@@ -10,6 +10,6 @@ const add = (directory, args) => {
   } catch (error) {
     operationFailed();
   }
-}
+};
 
 export default add;

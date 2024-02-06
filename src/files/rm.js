@@ -12,7 +12,7 @@ const rm = async (directory, args) => {
     await fs.rm(itemName);
   } else {
     operationFailed();
-  };
-}
+  }
+};
 
 export default rm;

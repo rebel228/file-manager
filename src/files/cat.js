@@ -7,13 +7,15 @@ const cat = (directory, args) => {
     operationFailed();
     return;
   }
-  const filePath = path.isAbsolute(args[0]) ? args[0] : path.resolve(directory, args[0]);
+  const filePath = path.isAbsolute(args[0])
+    ? args[0]
+    : path.resolve(directory, args[0]);
   const stream = fs.createReadStream(filePath, 'utf-8');
   let data = '';
 
-  stream.on('data', (chunk) => data += chunk);
+  stream.on('data', (chunk) => (data += chunk));
   stream.on('end', () => console.log(data));
   stream.on('error', () => operationFailed());
-}
+};
 
 export default cat;

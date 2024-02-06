@@ -12,7 +12,7 @@ const os = (args) => {
   const command = name.slice(2);
 
   switch (command) {
-    case 'EOL':  {
+    case 'EOL': {
       console.log(EOL);
       return;
     }
@@ -32,8 +32,9 @@ const os = (args) => {
       console.log(arch());
       return;
     }
-    default: operationFailed();
+    default:
+      operationFailed();
   }
-}
+};
 
 export default os;

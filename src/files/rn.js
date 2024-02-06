@@ -7,14 +7,16 @@ const rn = async (directory, args) => {
     operationFailed();
     return;
   }
-  const oldPath = path.isAbsolute(args[0]) ? args[0] : path.resolve(directory, args[0]);
-  const newPath = path.resolve(path.parse(oldPath).dir, args[1])
-    fs.rename(oldPath, path.resolve(oldPath, newPath), (error) => {
-      if (error) {
-        console.log(error);
-        operationFailed();
-        }
-    });
-}
+  const oldPath = path.isAbsolute(args[0])
+    ? args[0]
+    : path.resolve(directory, args[0]);
+  const newPath = path.resolve(path.parse(oldPath).dir, args[1]);
+  fs.rename(oldPath, path.resolve(oldPath, newPath), (error) => {
+    if (error) {
+      console.log(error);
+      operationFailed();
+    }
+  });
+};
 
 export default rn;

@@ -24,11 +24,10 @@ const setDirectory = async (value) => {
   try {
     await access(value, constants.F_OK);
     directory = value;
-  }
-  catch (error) {
+  } catch (error) {
     invalidInput();
   }
-}
+};
 
 console.log(`Welcome to the File Manager, ${username}!`);
 
@@ -37,7 +36,7 @@ stdin.on('data', async (chunk) => {
   const command = input[0];
   const args = input.slice(1);
 
-  switch(command) {
+  switch (command) {
     case 'up': {
       const newDir = up(directory);
       setDirectory(newDir);
@@ -108,7 +107,8 @@ stdin.on('data', async (chunk) => {
       return;
     }
 
-    default: console.log('Invalid input');
+    default:
+      console.log('Invalid input');
   }
 });
 
