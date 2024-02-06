@@ -8,6 +8,7 @@ import cat from './files/cat.js';
 import add from './files/add.js';
 import rn from './files/rn.js';
 import copyMove from './files/copyOrMove.js';
+import rm from './files/rm.js';
 import { homedir } from 'os';
 
 import { invalidInput } from './utils/consoleMessages.js';
@@ -77,6 +78,11 @@ stdin.on('data', async (chunk) => {
 
     case 'mv': {
       copyMove(directory, args, true);
+      return;
+    }
+
+    case 'rm': {
+      await rm(directory, args, true);
       return;
     }
 
