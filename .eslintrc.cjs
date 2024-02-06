@@ -1,14 +1,26 @@
 module.exports = {
-  root: true,
-  extends: [
-    'prettier',
-    'plugin:prettier/recommended',
-  ],
-  env: {
-    browser: true,
-    es6: true,
-    jest: true,
-    node: true,
-  },
-  plugins: ['@typescript-eslint', 'react', 'react-hooks'],
-};
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "extends": ["eslint:recommended", "prettier"],
+    "overrides": [
+        {
+            "env": {
+                "node": true
+            },
+            "files": [
+                ".eslintrc.{js,cjs}"
+            ],
+            "parserOptions": {
+                "sourceType": "script"
+            }
+        }
+    ],
+    "parserOptions": {
+        "ecmaVersion": "latest",
+        "sourceType": "module"
+    },
+    "rules": {
+    }
+}

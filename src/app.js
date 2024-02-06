@@ -1,4 +1,3 @@
-import path from 'path';
 import process from 'process';
 import { access, constants } from 'fs/promises';
 import up from './navigation/up.js';
@@ -16,7 +15,7 @@ import { homedir } from 'os';
 
 import { invalidInput } from './utils/consoleMessages.js';
 
-const { argv, stdin, stdout } = process;
+const { argv, stdin } = process;
 
 const username = argv[2].split('=')[1];
 let directory = homedir();
@@ -41,7 +40,7 @@ stdin.on('data', async (chunk) => {
   switch(command) {
     case 'up': {
       const newDir = up(directory);
-      directory = newDir;
+      setDirectory(newDir);
       console.log(newDir);
       console.log(`You are currently in ${directory}`);
       return;

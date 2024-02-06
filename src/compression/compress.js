@@ -30,7 +30,7 @@ const compress = async (directory, args, decompress = false) => {
   try {
     const brotli = decompress ? zlib.createBrotliDecompress() : zlib.createBrotliCompress();
 
-    const stream = readStream.pipe(brotli).pipe(writeStream);
+    readStream.pipe(brotli).pipe(writeStream);
   }
 
   catch {
