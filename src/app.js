@@ -7,6 +7,7 @@ import ls from './navigation/ls.js';
 import cat from './files/cat.js';
 import add from './files/add.js';
 import rn from './files/rn.js';
+import cp from './files/copy.js';
 import { homedir } from 'os';
 
 import { invalidInput } from './utils/consoleMessages.js';
@@ -43,7 +44,7 @@ stdin.on('data', async (chunk) => {
     }
 
     case 'cd': {
-      const newDir = cd(directory, args);
+      const newDir = await cd(directory, args);
       directory = newDir;
       console.log(`You are currently in ${directory}`);
       return;
@@ -66,6 +67,11 @@ stdin.on('data', async (chunk) => {
 
     case 'rn': {
       rn(directory, args);
+      return;
+    }
+
+    case 'cp': {
+      cp(directory, args);
       return;
     }
 
