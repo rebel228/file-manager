@@ -9,6 +9,7 @@ import add from './files/add.js';
 import rn from './files/rn.js';
 import copyMove from './files/copyOrMove.js';
 import rm from './files/rm.js';
+import os from './osInfo/osInfo.js';
 import { homedir } from 'os';
 
 import { invalidInput } from './utils/consoleMessages.js';
@@ -82,7 +83,12 @@ stdin.on('data', async (chunk) => {
     }
 
     case 'rm': {
-      await rm(directory, args, true);
+      await rm(directory, args);
+      return;
+    }
+
+    case 'os': {
+      await os(args);
       return;
     }
 
