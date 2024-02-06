@@ -10,6 +10,7 @@ import rn from './files/rn.js';
 import copyMove from './files/copyOrMove.js';
 import rm from './files/rm.js';
 import os from './osInfo/osInfo.js';
+import hash from './hash/hash.js';
 import { homedir } from 'os';
 
 import { invalidInput } from './utils/consoleMessages.js';
@@ -88,7 +89,12 @@ stdin.on('data', async (chunk) => {
     }
 
     case 'os': {
-      await os(args);
+      os(args);
+      return;
+    }
+
+    case 'hash': {
+      await hash(directory, args);
       return;
     }
 
