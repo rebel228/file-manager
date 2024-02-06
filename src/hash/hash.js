@@ -1,9 +1,8 @@
 import crypto from 'crypto';
 import fs from 'fs';
-import {default as fsWithCallbacks} from 'fs'
+import fsPromises from 'fs/promises';
 import { operationFailed } from '../utils/consoleMessages.js';
 import path from 'path';
-const fsPromises = fsWithCallbacks.promises
 
 const hash = async (directory, args) => {
   const name = args[0] || '';

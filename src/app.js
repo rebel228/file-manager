@@ -11,6 +11,7 @@ import copyMove from './files/copyOrMove.js';
 import rm from './files/rm.js';
 import os from './osInfo/osInfo.js';
 import hash from './hash/hash.js';
+import compress from './compression/compress.js';
 import { homedir } from 'os';
 
 import { invalidInput } from './utils/consoleMessages.js';
@@ -95,6 +96,16 @@ stdin.on('data', async (chunk) => {
 
     case 'hash': {
       await hash(directory, args);
+      return;
+    }
+
+    case 'compress': {
+      await compress(directory, args);
+      return;
+    }
+
+    case 'decompress': {
+      await compress(directory, args, true);
       return;
     }
 
