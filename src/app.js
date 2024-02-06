@@ -75,7 +75,7 @@ stdin.on('data', async (chunk) => {
     }
 
     case 'cp': {
-      copyMove(directory, args);
+      await copyMove(directory, args);
       return;
     }
 

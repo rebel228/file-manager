@@ -3,6 +3,7 @@ import fs from 'fs';
 import fsPromises from 'fs/promises'
 import path from 'path';
 import { operationFailed } from '../utils/consoleMessages.js';
+import { error } from 'console';
 
 const compress = async (directory, args, decompress = false) => {
   if (!args[0] || !args[1]) {
@@ -15,17 +16,28 @@ const compress = async (directory, args, decompress = false) => {
   const folderData = await fsPromises.readdir(directory, 'utf-8');
   const item = folderData.find((value) => value === path.parse(readName).base);
 
-  if (!item || (await fsPromises.stat(path.resolve(directory, item))).isDirectory()) {
+  if (!item ||
+    (await fsPromises.stat(path.resolve(directory, item))).isDirectory() ||
+    !fs.existsSync(path.parse(writeName).dir)
+    ) {
     operationFailed();
     return;
   }
 
   const readStream = fs.createReadStream(readName);
   const writeStream = fs.createWriteStream(writeName);
+  
+  try {
+    const brotli = decompress ? zlib.createBrotliDecompress() : zlib.createBrotliCompress();
 
-  const brotli = decompress ? zlib.createBrotliDecompress() : zlib.createBrotliCompress();
+    const stream = readStream.pipe(brotli).pipe(writeStream);
+  }
 
-  const stream = readStream.pipe(brotli).pipe(writeStream);
+  catch {
+    operationFailed();
+    console.log(error);
+  }
+
 }
 
 export default compress;
