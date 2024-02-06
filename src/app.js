@@ -7,7 +7,7 @@ import ls from './navigation/ls.js';
 import cat from './files/cat.js';
 import add from './files/add.js';
 import rn from './files/rn.js';
-import cp from './files/copy.js';
+import copyMove from './files/copyOrMove.js';
 import { homedir } from 'os';
 
 import { invalidInput } from './utils/consoleMessages.js';
@@ -71,7 +71,12 @@ stdin.on('data', async (chunk) => {
     }
 
     case 'cp': {
-      cp(directory, args);
+      copyMove(directory, args);
+      return;
+    }
+
+    case 'mv': {
+      copyMove(directory, args, true);
       return;
     }
 
